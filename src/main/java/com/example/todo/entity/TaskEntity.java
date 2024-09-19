@@ -1,10 +1,16 @@
 package com.example.todo.entity;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 @Entity
 @Table(name = "task")
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaskEntity {
 
     @Id

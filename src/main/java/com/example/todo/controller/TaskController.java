@@ -32,7 +32,7 @@ public class TaskController {
 
         try {
             taskService.addTask(task);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity("Task added successfully", HttpStatus.OK);
         } catch (TaskException ex) {
             return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -55,12 +55,14 @@ public class TaskController {
     }
 
     @PutMapping("/updateTask")
-    public void updateTask(@RequestBody TaskEntity task) throws TaskException, TaskSizeException {
+    public ResponseEntity updateTask(@RequestBody TaskEntity task) throws TaskException, TaskSizeException {
         taskService.updateTask(task);
+        return new ResponseEntity("Task updated successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteTask")
-    public void deleteTask(@PathVariable Long id) {
+    @DeleteMapping("/deleteTask/{id}")
+    public ResponseEntity deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
+        return new ResponseEntity("Task deleted successfully", HttpStatus.OK);
     }
 }
